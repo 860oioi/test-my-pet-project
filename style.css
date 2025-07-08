@@ -365,6 +365,18 @@ a:hover {
     }
 }
 
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+    opacity: 0.7;
+}
+
 /* Стили для мобильных устройств */
 @media (max-width: 768px) {
     nav ul {

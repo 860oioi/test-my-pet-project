@@ -1,3 +1,43 @@
+// Анимация матрицы
+(function() {
+    const canvas = document.getElementById('matrix-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    const letters = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+    const fontSize = 22;
+    const columns = Math.floor(width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+        ctx.fillStyle = 'rgba(10, 20, 10, 0.15)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.font = fontSize + 'px monospace';
+        ctx.fillStyle = '#00FF41';
+        for (let i = 0; i < drops.length; i++) {
+            const text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+            drops[i]++;
+        }
+    }
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    setInterval(draw, 50);
+})();
+
 // Управление 3D кубиком мышкой
 document.addEventListener('DOMContentLoaded', function() {
     const cube = document.querySelector('.cube');
